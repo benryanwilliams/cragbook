@@ -7,4 +7,14 @@ target 'Cragbook' do
 
   # Pods for Cragbook
 
+pod 'Appirater'
+
+# Firebase
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
+pod 'Firebase/Analytics'
+pod 'Firebase/Crashlytics'
+pod 'Firebase/Storage'
+
 end

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2ABC2EB7EAEC6A34CE429E0B /* Pods_Cragbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B5C346FD0C62E18C97CCDC /* Pods_Cragbook.framework */; };
 		63832F4425611423009A66CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F4325611423009A66CD /* AppDelegate.swift */; };
 		63832F4625611423009A66CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F4525611423009A66CD /* SceneDelegate.swift */; };
 		63832F4825611423009A66CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F4725611423009A66CD /* HomeViewController.swift */; };
@@ -27,6 +28,10 @@
 		63832F7E25612505009A66CD /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F7D25612505009A66CD /* SearchResultViewController.swift */; };
 		63832F802561253E009A66CD /* PostEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F7F2561253E009A66CD /* PostEditorViewController.swift */; };
 		63832F8225612546009A66CD /* PublishPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F8125612546009A66CD /* PublishPostViewController.swift */; };
+		63832F8425613E6D009A66CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63832F8325613E6C009A66CD /* GoogleService-Info.plist */; };
+		63DA36EE256159DD00D71E84 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA36ED256159DD00D71E84 /* DatabaseManager.swift */; };
+		63DA36F025616D6000D71E84 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA36EF25616D6000D71E84 /* AuthManager.swift */; };
+		63DA36F225616DB900D71E84 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA36F125616DB900D71E84 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +57,13 @@
 		63832F7D25612505009A66CD /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		63832F7F2561253E009A66CD /* PostEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorViewController.swift; sourceTree = "<group>"; };
 		63832F8125612546009A66CD /* PublishPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPostViewController.swift; sourceTree = "<group>"; };
+		63832F8325613E6C009A66CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63DA36ED256159DD00D71E84 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		63DA36EF25616D6000D71E84 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		63DA36F125616DB900D71E84 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		6F4AD95948732075709DA6F3 /* Pods-Cragbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cragbook.release.xcconfig"; path = "Target Support Files/Pods-Cragbook/Pods-Cragbook.release.xcconfig"; sourceTree = "<group>"; };
+		D6B5C346FD0C62E18C97CCDC /* Pods_Cragbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cragbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0FE55C985715AF65CF70D23 /* Pods-Cragbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cragbook.debug.xcconfig"; path = "Target Support Files/Pods-Cragbook/Pods-Cragbook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ABC2EB7EAEC6A34CE429E0B /* Pods_Cragbook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +83,8 @@
 			children = (
 				63832F4225611423009A66CD /* Cragbook */,
 				63832F4125611423009A66CD /* Products */,
+				9871641F8CAAA497327437F4 /* Pods */,
+				6AB27A3FAA8B0B1C5615A11E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,10 +99,10 @@
 		63832F4225611423009A66CD /* Cragbook */ = {
 			isa = PBXGroup;
 			children = (
+				63832F5A25611AE8009A66CD /* Resources */,
 				63832F5725611ACB009A66CD /* Models */,
 				63832F5825611AD2009A66CD /* Views */,
 				63832F5925611AD7009A66CD /* Controllers */,
-				63832F5A25611AE8009A66CD /* Resources */,
 				63832F512561142B009A66CD /* Info.plist */,
 			);
 			path = Cragbook;
@@ -121,8 +136,12 @@
 		63832F5A25611AE8009A66CD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63832F8325613E6C009A66CD /* GoogleService-Info.plist */,
 				63832F4325611423009A66CD /* AppDelegate.swift */,
 				63832F4525611423009A66CD /* SceneDelegate.swift */,
+				63DA36ED256159DD00D71E84 /* DatabaseManager.swift */,
+				63DA36F125616DB900D71E84 /* StorageManager.swift */,
+				63DA36EF25616D6000D71E84 /* AuthManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,14 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				63832F6C256123F8009A66CD /* Onboarding */,
-				63832F7125612481009A66CD /* PostViewController.swift */,
-				63832F7325612491009A66CD /* EditProfileViewController.swift */,
-				63832F752561249B009A66CD /* SettingsViewController.swift */,
-				63832F77256124D8009A66CD /* ListViewController.swift */,
-				63832F79256124DF009A66CD /* SearchViewController.swift */,
-				63832F7D25612505009A66CD /* SearchResultViewController.swift */,
-				63832F7F2561253E009A66CD /* PostEditorViewController.swift */,
-				63832F8125612546009A66CD /* PublishPostViewController.swift */,
+				63DA36EC2561515400D71E84 /* General */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -173,6 +185,38 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		63DA36EC2561515400D71E84 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				63832F7125612481009A66CD /* PostViewController.swift */,
+				63832F7325612491009A66CD /* EditProfileViewController.swift */,
+				63832F752561249B009A66CD /* SettingsViewController.swift */,
+				63832F77256124D8009A66CD /* ListViewController.swift */,
+				63832F79256124DF009A66CD /* SearchViewController.swift */,
+				63832F7D25612505009A66CD /* SearchResultViewController.swift */,
+				63832F7F2561253E009A66CD /* PostEditorViewController.swift */,
+				63832F8125612546009A66CD /* PublishPostViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		6AB27A3FAA8B0B1C5615A11E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6B5C346FD0C62E18C97CCDC /* Pods_Cragbook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9871641F8CAAA497327437F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0FE55C985715AF65CF70D23 /* Pods-Cragbook.debug.xcconfig */,
+				6F4AD95948732075709DA6F3 /* Pods-Cragbook.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -180,9 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63832F542561142B009A66CD /* Build configuration list for PBXNativeTarget "Cragbook" */;
 			buildPhases = (
+				01A5DA5FBC5F63C7CC70152D /* [CP] Check Pods Manifest.lock */,
 				63832F3C25611423009A66CD /* Sources */,
 				63832F3D25611423009A66CD /* Frameworks */,
 				63832F3E25611423009A66CD /* Resources */,
+				5BDCD196037099F99EBAFD62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63832F8425613E6D009A66CD /* GoogleService-Info.plist in Resources */,
 				63832F502561142B009A66CD /* LaunchScreen.storyboard in Resources */,
 				63832F4D2561142B009A66CD /* Assets.xcassets in Resources */,
 				63832F4B25611423009A66CD /* Main.storyboard in Resources */,
@@ -238,6 +285,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01A5DA5FBC5F63C7CC70152D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cragbook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BDCD196037099F99EBAFD62 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cragbook/Pods-Cragbook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cragbook/Pods-Cragbook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cragbook/Pods-Cragbook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63832F3C25611423009A66CD /* Sources */ = {
@@ -251,12 +340,15 @@
 				63832F4825611423009A66CD /* HomeViewController.swift in Sources */,
 				63832F4425611423009A66CD /* AppDelegate.swift in Sources */,
 				63832F802561253E009A66CD /* PostEditorViewController.swift in Sources */,
+				63DA36F225616DB900D71E84 /* StorageManager.swift in Sources */,
 				63832F7225612481009A66CD /* PostViewController.swift in Sources */,
+				63DA36EE256159DD00D71E84 /* DatabaseManager.swift in Sources */,
 				63832F6725612357009A66CD /* ProfileViewController.swift in Sources */,
 				63832F7E25612505009A66CD /* SearchResultViewController.swift in Sources */,
 				63832F6E25612419009A66CD /* LoginViewController.swift in Sources */,
 				63832F7A256124DF009A66CD /* SearchViewController.swift in Sources */,
 				63832F4625611423009A66CD /* SceneDelegate.swift in Sources */,
+				63DA36F025616D6000D71E84 /* AuthManager.swift in Sources */,
 				63832F6A256123A4009A66CD /* ExploreViewController.swift in Sources */,
 				63832F652561234D009A66CD /* CameraViewController.swift in Sources */,
 				63832F78256124D8009A66CD /* ListViewController.swift in Sources */,
@@ -402,6 +494,7 @@
 		};
 		63832F552561142B009A66CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0FE55C985715AF65CF70D23 /* Pods-Cragbook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -420,6 +513,7 @@
 		};
 		63832F562561142B009A66CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F4AD95948732075709DA6F3 /* Pods-Cragbook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
