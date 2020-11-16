@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2ABC2EB7EAEC6A34CE429E0B /* Pods_Cragbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B5C346FD0C62E18C97CCDC /* Pods_Cragbook.framework */; };
+		6333675425629119006350E0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333675325629119006350E0 /* Extensions.swift */; };
 		63832F4425611423009A66CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F4325611423009A66CD /* AppDelegate.swift */; };
 		63832F4625611423009A66CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F4525611423009A66CD /* SceneDelegate.swift */; };
 		63832F4825611423009A66CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63832F4725611423009A66CD /* HomeViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6333675325629119006350E0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		63832F4025611423009A66CD /* Cragbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cragbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63832F4325611423009A66CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63832F4525611423009A66CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				63DA36ED256159DD00D71E84 /* DatabaseManager.swift */,
 				63DA36F125616DB900D71E84 /* StorageManager.swift */,
 				63DA36EF25616D6000D71E84 /* AuthManager.swift */,
+				6333675325629119006350E0 /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				63832F6725612357009A66CD /* ProfileViewController.swift in Sources */,
 				63832F7E25612505009A66CD /* SearchResultViewController.swift in Sources */,
 				63832F6E25612419009A66CD /* LoginViewController.swift in Sources */,
+				6333675425629119006350E0 /* Extensions.swift in Sources */,
 				63832F7A256124DF009A66CD /* SearchViewController.swift in Sources */,
 				63832F4625611423009A66CD /* SceneDelegate.swift in Sources */,
 				63DA36F025616D6000D71E84 /* AuthManager.swift in Sources */,
@@ -500,6 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UF8K35X7PL;
 				INFOPLIST_FILE = Cragbook/info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,6 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UF8K35X7PL;
 				INFOPLIST_FILE = Cragbook/info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
