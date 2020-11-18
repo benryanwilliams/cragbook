@@ -15,6 +15,8 @@ class RegisterViewController: UIViewController {
         static let cornerRadius: CGFloat = 8.0
     }
     
+    // MARK:- Create UI
+    
     private let logoImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "cragbook-logo"))
         imageView.contentMode = .scaleAspectFit
@@ -95,6 +97,8 @@ class RegisterViewController: UIViewController {
         return button
     }()
     
+    // MARK:- viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,11 +109,14 @@ class RegisterViewController: UIViewController {
         registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
         termsButton.addTarget(self, action: #selector(didTapTermsButton), for: .touchUpInside)
         privacyButton.addTarget(self, action: #selector(didTapPrivacyButton), for: .touchUpInside)
+        
         addSubviews()
         
         view.backgroundColor = .systemBackground
         
     }
+    
+    // MARK:- viewDidLayoutSubviews - assign frames
     
     override func viewDidLayoutSubviews() {
         
@@ -163,6 +170,8 @@ class RegisterViewController: UIViewController {
         )
     }
     
+    // MARK:- Add subviews
+    
     private func addSubviews() {
         view.addSubview(logoImageView)
         view.addSubview(usernameField)
@@ -173,7 +182,12 @@ class RegisterViewController: UIViewController {
         view.addSubview(privacyButton)
     }
     
+    // MARK:- Button actions
+    
     @objc private func didTapRegisterButton() {
+        
+        print("Register button tapped")
+        
         usernameField.resignFirstResponder()
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
@@ -181,10 +195,23 @@ class RegisterViewController: UIViewController {
         guard let username = usernameField.text, !username.isEmpty,
             let email = emailField.text, !email.isEmpty, email.contains("@"), email.contains("."),
             let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
+                print("failed")
                 return
         }
         
-        AuthManager.shared.registerNewUser(username: username, email: email, password: password)
+        AuthManager.shared.registerNewUser(username: username, email: email, password: password) { registered in
+            DispatchQueue.main.async {
+                if registered {
+                    // Good to go
+                    
+                }
+                else {
+                    // Failed
+                    
+                }
+            }
+            
+        }
         
     }
     
@@ -208,6 +235,8 @@ class RegisterViewController: UIViewController {
     
     
 }
+
+// MARK:- TextField Delegate Methods
 
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

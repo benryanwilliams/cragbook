@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
         static let cornerRadius: CGFloat = 8.0
     }
     
-    // MARK:- Programmatically create UI
+    // MARK:- Create UI
     
     // This is an 'anonymous closure'. Create username or email UITextField programmatically via closure that executes now (the equals sign and the '()' executes the closure now and stores it within the property, rather than executing it when the property is called)
     private let usernameEmailField: UITextField = {
@@ -277,6 +277,8 @@ class LoginViewController: UIViewController {
     }
     
 }
+
+// MARK:- TextField Delegate Methods
 
 extension LoginViewController: UITextFieldDelegate {
     
