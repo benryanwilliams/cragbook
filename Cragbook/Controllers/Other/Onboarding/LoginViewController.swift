@@ -15,7 +15,9 @@ class LoginViewController: UIViewController {
         static let cornerRadius: CGFloat = 8.0
     }
     
-    // This is an 'anonymous closure'. Create property of type UITextField via closure that executes now (the equals sign and the '()' executes the closure now and stores it within the property, rather than executing it when the property is called)
+    // MARK:- Programmatically create UI
+    
+    // This is an 'anonymous closure'. Create username or email UITextField programmatically via closure that executes now (the equals sign and the '()' executes the closure now and stores it within the property, rather than executing it when the property is called)
     private let usernameEmailField: UITextField = {
         let field = UITextField()
         field.placeholder = "Username or email"
@@ -87,27 +89,33 @@ class LoginViewController: UIViewController {
         return header
     }()
     
+    // MARK:- viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Link buttons created above with actions below
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         createAccountButton.addTarget(self, action: #selector(didTapCreateAccountButton), for: .touchUpInside)
         termsButton.addTarget(self, action: #selector(didTapTermsButton), for: .touchUpInside)
         privacyButton.addTarget(self, action: #selector(didTapPrivacyButton), for: .touchUpInside)
         
+        // Set self as delegate for both username and password textFields
         usernameEmailField.delegate = self
         passwordField.delegate = self
         
-        addSubviews()
+        addSubviews() // See method below
         
         view.backgroundColor = .systemBackground
         
     }
     
+    // MARK:- viewDidLayoutSubviews - assign frames and add logo
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Assign frames
+        // Assign frames to UI elements
         headerView.frame = CGRect(
             x: 0,
             y: 0,
@@ -157,10 +165,11 @@ class LoginViewController: UIViewController {
             height: 30
         )
         
-        configureHeaderView()
+        configureHeaderView() // See method below
         
     }
     
+    // Ensure that headerView only has one subview (i.e. the Cragbook logo)
     private func configureHeaderView() {
         guard headerView.subviews.count == 1 else {
             return
@@ -169,9 +178,10 @@ class LoginViewController: UIViewController {
         guard let backgroundView = headerView.subviews.first else {
             return
         }
+        
         backgroundView.frame = headerView.bounds
         
-        // Add Instagram logo
+        // Add Cragbook logo
         let imageView = UIImageView(image: UIImage(named: "fulltextlogo"))
         headerView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
@@ -184,6 +194,8 @@ class LoginViewController: UIViewController {
         
     }
     
+    // MARK:- Add subviews
+    
     private func addSubviews() {
         view.addSubview(usernameEmailField)
         view.addSubview(passwordField)
@@ -194,21 +206,51 @@ class LoginViewController: UIViewController {
         view.addSubview(headerView)
     }
     
+    // MARK:- Button actions
+    
     @objc private func didTapLoginButton() {
+        // Disable keyboard when login pressed
         usernameEmailField.resignFirstResponder()
         passwordField.resignFirstResponder()
-         
+        
+        // Assign username to constant if not empty, assign password to constant if not empty and at least 8 characters
         guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty,
             let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
-            return
+                return
         }
         
         // Login functionality
+        var username: String?
+        var email: String?
+        
+        if usernameEmail.contains("@"), usernameEmail.contains(".") {
+            email = usernameEmail
+        }
+        else {
+            username = usernameEmail
+        }
         
         
+        AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
+            DispatchQueue.main.async {
+                if success {
+                    // User logged in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                else {
+                    // Error occurred
+                    let alert = UIAlertController(title: "Log in error", message: "We were unable to log you in", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }
     }
     
     @objc private func didTapTermsButton() {
+        // Load web page with Facebook's terms
         guard let url = URL(string: "https://www.facebook.com/terms.php") else {
             return
         }
@@ -218,6 +260,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func didTapPrivacyButton() {
+        // Load web page with Facebook's privacy policy
         guard let url = URL(string: "https://www.facebook.com/policy.php") else {
             return
         }
@@ -226,8 +269,11 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func didTapCreateAccountButton() {
+        // Load RegisterViewController
         let vc = RegisterViewController()
-        present(vc, animated: true)
+        vc.title = "Create account"
+        
+        present(UINavigationController(rootViewController: vc), animated: true) // Enables title
     }
     
 }
