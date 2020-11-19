@@ -46,6 +46,20 @@ public class AuthManager {
         
     }
     
+    /// Attempt to log out firebase user
+    public func logOutUser(completion: (Bool) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(true)
+            return
+        }
+        catch {
+            print(error)
+            completion(false)
+            return
+        }
+    }
+    
     public func registerNewUser(username: String, email: String, password: String, completion: @escaping (Bool) -> Void) { // Bool represents whether the account was created
         /*
          - Check if username is available
