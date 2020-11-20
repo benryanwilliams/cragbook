@@ -6,6 +6,7 @@
 //  Copyright © 2020 Ben Williams. All rights reserved.
 //
 
+import SafariServices
 import UIKit
 
 // Model for cells in tableView
@@ -51,12 +52,82 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
     
     // This creates a section for the log out cell. When tapped, the completion handler runs the didTapLogOut method. 'weak self' should always be used when referencing 'self' in a closure to prevent a memory leak.
     private func configureModel() {
-        let section = [SettingCellModel(title: "Log Out") { [weak self] in
-            self?.didTapLogOut()
+        data.append([
+            SettingCellModel(title: "Edit profile") { [weak self] in
+                self?.didTapEditProfile()
+            },
+            
+            SettingCellModel(title: "Invite friends") { [weak self] in
+                self?.didTapInviteFriends()
+            },
+            
+            SettingCellModel(title: "Save original posts") { [weak self] in
+                self?.didTapSaveOriginalPosts()
             }
-        ]
+            
+        ])
         
-        data.append(section)
+        data.append([
+            SettingCellModel(title: "Terms of service") { [weak self] in
+                self?.openURL(type: .terms)
+            },
+            
+            SettingCellModel(title: "Privacy policy") { [weak self] in
+                self?.openURL(type: .privacy)            },
+            
+            SettingCellModel(title: "Help and feedback ") { [weak self] in
+                self?.openURL(type: .help)            },
+        ])
+        
+        data.append([
+            SettingCellModel(title: "Log out") { [weak self] in
+                self?.didTapLogOut()
+            }
+        ])
+    }
+    
+    private func didTapEditProfile() {
+        let vc = EditProfileViewController()
+        vc.title = "Edit profile"
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true)
+    }
+    
+    private func didTapInviteFriends() {
+        // Show share sheet to invite friends
+    }
+    
+    private func didTapSaveOriginalPosts() {
+        
+    }
+    
+    enum SettingsURLType {
+        case terms, privacy, help
+    }
+    
+    private func openURL(type: SettingsURLType) {
+        let urlString: String
+        switch type {
+        case .terms: urlString = "https://www.facebook.com/terms.php"
+        case .privacy: urlString = "https://www.facebook.com/policy.php"
+        case .help: urlString = "https://www.facebook.com/help "
+            
+        }
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
+    
+    private func didPrivacyPolicy() {
+        
+    }
+    
+    private func didTapHelpAndFeedback() {
+        
     }
     
     private func didTapLogOut() {
