@@ -90,6 +90,7 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
         let vc = EditProfileViewController()
         vc.title = "Edit profile"
         let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
     
@@ -101,12 +102,16 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
         
     }
     
+    // Used in openURL method below
     enum SettingsURLType {
         case terms, privacy, help
     }
     
+    // General purpose method to open URLs
     private func openURL(type: SettingsURLType) {
         let urlString: String
+        
+        // Set urlString based on type, from the choices within the enum above
         switch type {
         case .terms: urlString = "https://www.facebook.com/terms.php"
         case .privacy: urlString = "https://www.facebook.com/policy.php"
@@ -114,10 +119,12 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
             
         }
         
+        // Create url from URL string
         guard let url = URL(string: urlString) else {
             return
         }
         
+        // Present URL in Safari
         let vc = SFSafariViewController(url: url)
         present(vc, animated: true)
     }
@@ -142,7 +149,7 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
                         let vc = LoginViewController()
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true) {
-                            // Following two lines of code  ensure that when the user logs back in again, they are presented with the home screen rather than the settings screen, and that the tab bar has the home button selected
+                            // Following two lines of code ensure that when the user logs back in again, they are presented with the home screen rather than the settings screen, and that the tab bar has the home button selected
                             self.navigationController?.popToRootViewController(animated: false)
                             self.tabBarController?.selectedIndex = 0
                             
@@ -157,7 +164,7 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
             }
         }))
         
-        // The following two lines are iPad specific, without these it won't know how to display the action sheet and it'll crash
+        // The following two lines are iPad specific - without these it won't know how to display the action sheet and it'll crash
         actionSheet.popoverPresentationController?.sourceView = tableView
         actionSheet.popoverPresentationController?.sourceRect = tableView.bounds
         
