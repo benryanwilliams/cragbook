@@ -8,6 +8,7 @@ target 'Cragbook' do
   # Pods for Cragbook
 
 pod 'Appirater'
+pod 'SDWebImage'
 
 # Firebase
 pod 'Firebase/Core'

@@ -77,18 +77,63 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // No items for the first section
+        if section == 0 {
+            return 0
+        }
+        // 30 items for the second section
         return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        cell.backgroundColor = .blue 
+        
+        cell.configure(debug: "test")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    // Add header to collectionView
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        // Ensure that the supplementary element is a header (not a footer) otherwise return empty reusable view
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+        
+        // Section 1 (second section) header
+        if indexPath.section == 1 {
+            // Tabs header - Create header from ProfileTabsCollectionReusableView
+            let tabControlHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileTabsCollectionReusableView.identifier, for: indexPath) as! ProfileTabsCollectionReusableView
+            
+            return tabControlHeader
+        }
+        
+        // Section 0 (first section)
+        // Profile header - Create header from ProfileInfoHeaderCollectionReusableView
+        let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier, for: indexPath) as! ProfileInfoHeaderCollectionReusableView
+        
+        return profileHeader
+    }
+    
+    // Specify size of header
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        // Apply size to header above the first section
+        if section == 0 {
+            return CGSize(width: collectionView.width,
+                          height: collectionView.height / 3)
+        }
+        // Apply size to header above second section
+        return CGSize(width: collectionView.width, height: 65)
     }
     
     
