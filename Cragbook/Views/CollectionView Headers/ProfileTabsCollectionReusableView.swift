@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Header below profile picture containing tabs on profile page
 class ProfileTabsCollectionReusableView: UICollectionReusableView {
         static let identifier = "ProfileTabsCollectionReusableView"
     

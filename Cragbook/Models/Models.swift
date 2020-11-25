@@ -12,6 +12,7 @@ enum Gender {
     case male, female, other
 }
 
+/// Represents the user's personal information
 struct User {
     let username: String
     let bio: String
@@ -22,6 +23,7 @@ struct User {
     let joinDate: Date
 }
 
+/// Represents the count of users followed, users following and posts made by the user
 struct UserCount {
     let followers: Int
     let following: Int

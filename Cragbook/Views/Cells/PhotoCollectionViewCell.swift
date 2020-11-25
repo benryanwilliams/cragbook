@@ -53,6 +53,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         
     }
     
+    // TODO:- Delete this once configure above has been completed - only used for test purposes
     public func configure(debug imageName: String) {
         let image = UIImage(named: imageName)
         photoImageView.image = image
