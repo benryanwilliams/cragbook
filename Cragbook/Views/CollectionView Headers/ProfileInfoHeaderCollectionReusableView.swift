@@ -110,6 +110,8 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
         editProfileButton.addTarget(self, action: #selector(didTapEditProfileButton), for: .touchUpInside)
     }
     
+    // MARK:- Layout Subviews
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
