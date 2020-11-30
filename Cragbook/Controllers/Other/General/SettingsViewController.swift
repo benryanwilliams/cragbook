@@ -50,7 +50,7 @@ final class SettingsViewController: UIViewController { // 'final' just means tha
         tableView.frame = view.bounds
     }
     
-    // This creates a section for the log out cell. When tapped, the completion handler runs the didTapLogOut method. 'weak self' should always be used when referencing 'self' in a closure to prevent a memory leak.
+    // This creates different sections for the cells and adds in functionality for each cell e.g. log out cell: when tapped, the completion handler runs the didTapLogOut method. 'weak self' should always be used when referencing 'self' in a closure to prevent a memory leak.
     private func configureModel() {
         data.append([
             SettingCellModel(title: "Edit profile") { [weak self] in

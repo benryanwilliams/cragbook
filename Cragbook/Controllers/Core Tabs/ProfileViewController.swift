@@ -171,7 +171,14 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
     
     func profileHeaderDidTapFollowersButton(_ header: ProfileInfoHeaderCollectionReusableView) {
         // Open list of followers
-        let vc = ListViewController(data: ["Ben", "Joe", "Salamander", "Sausage dog"])
+        
+        var mockData = [UserRelationship]()
+        
+        for x in 0...10 {
+            mockData.append(UserRelationship(username: "@ben", name: "Ben", type: x % 2 == 0 ? .following : .notFollowing)) // If x is even then set to 'following', if not then set to 'not following'
+        }
+        
+        let vc = ListViewController(data: mockData)
         vc.title = "Followers"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
@@ -179,7 +186,14 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
     
     func profileHeaderDidTapFollowingButton(_ header: ProfileInfoHeaderCollectionReusableView) {
         // Open list of following
-        let vc = ListViewController(data: ["Ben", "Joe", "Salamander", "Sausage dog"])
+        
+        var mockData = [UserRelationship]()
+        
+        for x in 0...10 {
+            mockData.append(UserRelationship(username: "@ben", name: "Ben", type: x % 2 == 0 ? .following : .notFollowing)) // If x is even then set to 'following', if not then set to 'not following'
+        }
+        
+        let vc = ListViewController(data: mockData)
         vc.title = "Following"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
