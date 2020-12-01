@@ -6,10 +6,11 @@
 //  Copyright © 2020 Ben Williams. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
 protocol NotificationsLikeEventTableViewCellDelegate: AnyObject {
-    func didTapRelatedPostButton(model: String )
+    func didTapRelatedPostButton(model: UserNotification)
 }
 
 class NotificationsLikeEventTableViewCell: UITableViewCell {
@@ -17,22 +18,27 @@ class NotificationsLikeEventTableViewCell: UITableViewCell {
     
     public weak var delegate: NotificationsLikeEventTableViewCellDelegate?
     
+    private var model: UserNotification?
+    
     private let profileImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .tertiarySystemBackground
         return imageView
     }()
     
     private let label: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 0
+        label.text = "@Salamander liked your photo."
         return label
     }()
     
     private let postButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "test"), for: .normal)
         return button
     }()
     
@@ -42,14 +48,43 @@ class NotificationsLikeEventTableViewCell: UITableViewCell {
         contentView.addSubview(profileImageView)
         contentView.addSubview(label)
         contentView.addSubview(postButton)
+        
+        selectionStyle = .none
+        
+        postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with model: String) {
+    @objc private func didTapPostButton() {
+        guard let model = model else {
+            return
+        }
+        self.delegate?.didTapRelatedPostButton(model: model)
+    }
+    
+    public func configure(with model: UserNotification) {
+        self.model = model
         
+        switch model.type {
+        // In the case that it is a 'like' notification, extract the UserPost data from the model and set it to a new constant called 'post' (of type UserPost), so that it can be used to generate a thumbnail image
+        case .like(let post):
+            let thumbnail = post.thumbnailImageURL
+            guard !thumbnail.absoluteString.contains("google.com") else {
+                return
+            }
+            postButton.sd_setBackgroundImage(with: thumbnail,
+                                             for: .normal,
+                                             completed: nil)
+            
+        case .follow:
+            break
+        }
+        
+        label.text = model.text
+        profileImageView.sd_setImage(with: model.user.profilePhoto, completed: nil)
     }
     
     override func prepareForReuse() {
@@ -64,10 +99,25 @@ class NotificationsLikeEventTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        profileImageView.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
-        label.frame = CGRect(x: profileImageView.right + 5, y: 5, width: width - profileImageView.width - 10, height: height - 10)
+        profileImageView.frame = CGRect(x: 3,
+                                        y: 3,
+                                        width: contentView.height - 6,
+                                        height: contentView.height - 6)
+        
+        profileImageView.layer.cornerRadius = profileImageView.height / 2
+        
+        let size = contentView.height - 4
+        postButton.frame = CGRect(x: contentView.width - 5 - size,
+                                  y: 2,
+                                  width: size,
+                                  height: size)
+        
+        label.frame = CGRect(x: profileImageView.right + 5,
+                             y: 0,
+                             width: width - size - profileImageView.width - 16,
+                             height: contentView.height)
     }
     
-
+    
 }
 
