@@ -1,5 +1,5 @@
 //
-//  IGFeedPostTableViewCell.swift
+//  IGFeedPostGeneralTableViewCell.swift
 //  Cragbook
 //
 //  Created by Ben Williams on 21/11/2020.
@@ -8,12 +8,13 @@
 
 import UIKit
 
-class IGFeedPostTableViewCell: UITableViewCell {
-
-    static let identifier = "IGFeedPostTableViewCell"
+/// Comments
+class FeedPostGeneralTableViewCell: UITableViewCell {
+    static let identifier = "FeedPostGeneralTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .orange
     }
     
     required init?(coder: NSCoder) {
@@ -23,4 +24,9 @@ class IGFeedPostTableViewCell: UITableViewCell {
     public func configure() {
         // Configure the cell
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+
 }

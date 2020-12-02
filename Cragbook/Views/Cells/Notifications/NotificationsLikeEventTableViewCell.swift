@@ -9,6 +9,7 @@
 import SDWebImage
 import UIKit
 
+// Delegates of this cell require didTapRelatedPostButton method - AnyObject allows weak delegate
 protocol NotificationsLikeEventTableViewCellDelegate: AnyObject {
     func didTapRelatedPostButton(model: UserNotification)
 }
