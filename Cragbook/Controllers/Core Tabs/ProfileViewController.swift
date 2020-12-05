@@ -109,8 +109,28 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Get the model and open post controller
         
 //        let model = userPosts[indexPath.row]
-        let vc = PostViewController(model: nil)
-        vc.title = "Post"
+        let user = User(username: "@joe",
+                        bio: "Joe's Bio goes here.",
+                        name: ("Joe", "Sausage"),
+                        profilePhoto: URL(string: "https://google.com")!,
+                        birthDate: Date(),
+                        gender: .male,
+                        counts: UserCount(followers: 40, following: 20, posts: 10),
+                        joinDate: Date())
+        
+        let post = UserPost(identifier: "242423",
+                            postType: .photo,
+                            thumbnailImageURL: URL(string: "https://google.com")!,
+                            postURL: URL(string: "https://google.com")!,
+                            caption: nil,
+                            likes: [],
+                            comments: [],
+                            createdDate: Date(),
+                            taggedUsers: [],
+                            owner: user)
+        
+        let vc = PostViewController(model: post)
+        vc.title = post.postType.rawValue 
         
         // Disable large title mode for the navigation controller
         navigationItem.largeTitleDisplayMode = .never
